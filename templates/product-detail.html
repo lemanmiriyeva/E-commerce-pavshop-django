@@ -1,0 +1,356 @@
+{% extends 'base.html' %}{% load static custom_filters %} {% load social_share %}
+{% block title %} Product-detail {% endblock %}
+{% block content %}
+{% block css %}
+<style>
+    .fade.in {
+    opacity: 1 !important;
+}
+
+/* Hide Radio button */
+.rate > input{
+  display: none !important;
+}
+
+.rate{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: left; 
+}
+
+.rate > label{
+  float: right !important;
+}
+
+/* Showing the stars */
+.rate > label:before{
+  display: inline-block !important;
+  font-size: 1.1rem !important;
+  font-family: FontAwesome !important;
+  content: "\f005" !important;
+  margin:0 !important;
+  padding:0.3rem .2rem !important;
+  cursor: pointer !important;
+}
+
+/* Half star */
+/* .rate .half:before{
+  content: "\f089" !important;
+  position: absolute !important;
+  padding-right: 0 !important;
+} */
+
+/* Click and hover */
+input:checked ~ label, label:hover ~ label{
+  color: #ffb503;
+}
+
+/* hover hightlight */
+input:checked + label:hover, input:checked ~ label:hover,input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label{
+  color: #cc9000;
+}
+
+.rating-star i{
+  color: #ffb503 !important;
+}
+
+ul.thumb{
+  margin:0 auto !important;
+  padding: 0 !important;
+  float: left !important;
+}
+ul.thumb li{
+  list-style: none ;
+  margin: 10px !important;
+}
+ul.thumb li img{
+  width: 80px!important;
+  height: 80px !important;
+  border: 1px solid grey !important;
+}
+</style>
+{% endblock %}
+<!--======= SUB BANNER =========-->
+<section class="sub-bnr" data-stellar-background-ratio="0.5">
+    <div class="position-center-center">
+        <div class="container">
+            <h4>WOOD CHAIR</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage'  %}">Home</a></li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<div id="content">
+
+    <!-- Popular Products -->
+    <section class="padding-top-100 padding-bottom-100">
+        <div class="container">
+
+            <!-- SHOP DETAIL -->
+            <div class="shop-detail">
+                <div class="row">
+
+                    <!-- Popular Images Slider -->
+                    <div class="col-md-7">
+
+                         <!-- Images Slider -->
+                        <div class="images-slider">
+                            <ul class="slides">
+                                {% for img in images %}
+                                    <li data-thumb="{{img.img.url }}"> <img class="img-responsive" src="{{img.img.url }}"  alt=""> </li> -->
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- COntent -->
+                    <div class="col-md-5">
+                        <h4 style="font-weight:bold">{{product.title}}</h4>
+                        <span class="price"><small>$</small>{{product.price}}</span>
+                        <!-- {%for i in un%}
+                        {{i.versions}}
+                        {%endfor%} -->
+
+                        <!-- Sale Tags -->
+                        {% if product.discount %}
+                        <div class="on-sale"> {{product.discount.amount}}{% if product.discount.disc_is_percent %}%{% else %}AZN{% endif %} <br><span>OFF</span> </div>
+                        {% endif %}
+                        <ul class="item-owner">
+                            <li>Designer : <span>{{ product.designer.designer}}</span></li>
+                            <li>Brand: <span> {{ product.product.brand.brand}}</span></li>
+                        </ul>
+
+                        <!-- Item Detail -->
+                        <p>{{product.product.large_desc}}</p>
+
+                        <!-- Short By -->
+                        <div class="some-info">
+                            <ul class="row margin-top-30">
+                                <li class="col-xs-4">
+                                    <div class="quinty">
+                                        <!-- QTY -->
+                                        <select class="selectpicker">
+                                            {% for q in product.quantity|get_range %}
+                                            <option>{{q}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </li>
+
+                                <li class="col-xs-8">
+                                    <ul class="colors-shop">
+                                        {% for color in colors %}
+                                            <li>
+                                                <a href="#." style="background:#{{color.code }};"></a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+
+                                <!-- ADD TO CART -->
+                                <!-- <li class="col-xs-6"> <button onclick="AddToBasket($(this).attr('data'))" class="btn" data="{{ product.id }}">ADD TO CART</button> </li> -->
+                                {% if product.in_stock > 0%}
+                                <div class="product-buttons">
+                                    <a href="#" onclick="AddToBasketinDetail($(this).attr('data'))" data="{{ product.id }}" data-toggle="modal" data-target="#addtocart" class="btn btn-solid">add to cart</a>
+                                    <a href="#" class="btn btn-solid">buy now</a>
+                                </div>
+                            {% else %}
+                                <div class="product-buttons">
+                                    <a href="#" onclick="AddToBasketinDetail($(this).attr('data'))" data="{{ product.id }}" data-toggle="modal" data-target="#addtocart" class="btn btn-solid disabled">add to cart</a>
+                                    <a href="#" class="btn btn-solid disabled">buy now</a>
+                                </div>
+                            {% endif %}
+                                <!-- LIKE -->
+                                <li class="col-xs-6"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
+                            </ul>
+
+                            <!-- INFOMATION -->
+                            <div class="inner-info">
+                                <h6>DELIVERY INFORMATION</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum finibus ligula a scelerisque gravida. Nullam laoreet tortor ac maximus alique met, consectetur adipiscing elit. </p>
+                                <h6>SHIPPING & RETURNS</h6>
+                                <h6>SHARE THIS PRODUCT</h6>
+
+                                <!-- Social Icons -->
+                                <ul class="social_icons">
+                                    <li>{% post_to_facebook object_or_url '<i class="icon-social-facebook"></i>' %}</li>
+                                    <li>{% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url '<i class="icon-social-twitter"></i>'  %}</li>
+                                    <li>{% post_to_gplus object_or_url '<i class="icon-social-dribbble"></i>' %}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--======= PRODUCT DESCRIPTION =========-->
+            <div class="item-decribe">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs animate fadeInUp" data-wow-delay="0.4s" role="tablist">
+                    <li role="presentation" class="active"><a href="#descr" role="tab" data-toggle="tab">DESCRIPTION</a></li>
+                    <li role="presentation"><a href="#review" role="tab" data-toggle="tab">REVIEW ({{reviews.count}})</a></li>
+                    <li role="presentation"><a href="#tags" role="tab" data-toggle="tab">INFORMATION</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content animate fadeInUp" data-wow-delay="0.4s">
+                    <!-- DESCRIPTION -->
+                    <div role="tabpanel" class="tab-pane fade in active" id="descr">
+                        {{product.product.desc|safe}}
+                    </div>
+
+                    <!-- REVIEW -->
+                    <div role="tabpanel" class="tab-pane fade" id="review">
+                        <h6>{{reviews.count }} REVIEWS FOR SHIP YOUR IDEA</h6>
+
+                        <!-- REVIEW PEOPLE 1 -->
+                        {% for review in reviews %}
+                        <div class="media">
+                            <div class="media-left">
+                                <!--  Image -->
+                               
+                                <div class="avatar"> 
+                                {% if review.user.image %}
+                                    <a href="#"> <img class="media-object" src="{{review.user.image.url}}" alt=""> </a>
+                                {% else %}
+                                    <a href="#"> <img class="media-object" src="{% static 'images/default_avatar_img.png'%}" alt=""> </a>
+                                {% endif %}
+                                </div>
+                            </div>
+                            <!--  Details -->
+                            <div class="media-body">
+                                <p class="font-playfair">"{{review.comment}}"</p>
+                                <h6> {{review.user.first_name}} {{review.user.last_name}}<span class="pull-right">{{review.created_at|date:'F d, Y'}}</span> </h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                 
+                        <!-- ADD REVIEW -->
+                        <h6 class="margin-t-40">ADD REVIEW</h6>
+                        <form action="{% url 'submit_review' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <ul class="row">
+                                <li class="col-sm-12">
+                                    <label> *YOUR REVIEW <textarea name="comment"></textarea></label>
+                                </li>
+                                {% for field in form %}
+                                            {% for error in field.errors %}
+                                            <p style="color: red;">{{error}}</p>
+                                            {% endfor %}</li>
+                                    {% endfor %}
+                                <span>YOUR RATING</span> 
+                                <div class="rate">
+                                    <input type="radio" name="rating" id="rating1" value="1" required /><label for="rating1" title="1"></label>
+                                    <input type="radio" name="rating" id="rating2" value="2" required /><label for="rating2" title="2" class="half"></label>
+                                    <input type="radio" name="rating" id="rating3" value="3" required /><label for="rating3" title="3"></label>
+                                    <input type="radio" name="rating" id="rating4" value="4" required /><label for="rating4" title="4" class="half"></label>
+                                    <input type="radio" name="rating" id="rating5" value="5" required /><label for="rating5" title="5"></label>
+                                    <input type="radio" name="rating" id="rating6" value="6" required /><label for="rating6" title="6" class="half"></label>
+                                    <input type="radio" name="rating" id="rating7" value="7" required /><label for="rating7" title="7"></label>
+                                    <input type="radio" name="rating" id="rating8" value="8" required /><label for="rating8" title="8" class="half"></label>
+                                    <input type="radio" name="rating" id="rating9" value="9" required /><label for="rating9" title="9"></label>
+                                    <input type="radio" name="rating" id="rating10" value="10" required /><label for="rating10" title="10" class="half"></label>
+                                </div>
+                                {% if user.is_authenticated %}
+                                <li class="col-sm-6">
+                                    <button type="submit" class="btn btn-dark btn-small pull-right no-margin">POST REVIEW</button>
+                                </li>
+                                {% else %}
+                                <li><a href="{% url 'login' %}" style="color: black;">You have to login to post review! </a></li>
+                                {% endif %}
+                            </ul>
+                        </form>
+                       
+                    </div>
+                    <!-- TAGS -->
+                    <div role="tabpanel" class="tab-pane fade" id="tags"> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section class="light-gray-bg padding-top-150 padding-bottom-150">
+        <div class="container">
+
+            <!-- Main Heading -->
+            <div class="heading text-center">
+                <h4>YOU MAY LIKE IT</h4>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
+          Sed feugiat, tellus vel tristique posuere, diam</span> </div>
+
+            <!-- Popular Item Slide -->
+            <div class="papular-block block-slide single-img-demos">
+                {% for product in related %}
+                    <!-- Item -->
+                    <div class="item">
+                        <!-- Item img -->
+                        {% for img in relatedimg %}
+                                        {% if img.product.id == product.id %}
+                                            <div class="item-img"> <img class="img-1" src="{{img.img.url}}" alt="">
+                                                <!-- Overlay -->
+                                                <div class="overlay">
+                                                    <div class="position-center-center">
+                                                        <div class="inn">
+                                                            <a href="{{img.img.url}}" data-lighter>
+                                                                <i class="icon-magnifier"></i>
+                                                             </a> 
+                                                            <a href="#.">
+                                                                <i class="icon-basket"></i>
+                                                            </a> 
+                                                            {% if product.id in request.session.liked_products|split_filter %}
+                                                            <a href="{% url 'liked_product' product.id %}"><i  style="color: red;" class="icon-heart"></i></a>
+                                                            {% else %}
+                                                            <a href="{% url 'liked_product' product.id %}"><i  style="color: white;" class="icon-heart"></i></a>
+                                                            {% endif %}
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                        {% endfor  %} 
+                        
+                        <!-- Item Name -->
+                        <div class="item-name"> <a href="#.">{{product.title}}</a>
+                            <p>{{ product.product.small_desc}}</p>
+                        </div>
+                        <!-- Price -->
+                        <span class="price"><small>$</small>{{product.price}}</span> </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="small-about padding-top-150 padding-bottom-150">
+        <div class="container">
+
+            <!-- Main Heading -->
+            <div class="heading text-center">
+                <h4>about PAVSHOP</h4>
+                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex. </p>
+            </div>
+
+            <!-- Social Icons -->
+            <ul class="social_icons">
+                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
+                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
+                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
+                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
+                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+    
+</div>{% endblock %}

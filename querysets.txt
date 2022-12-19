@@ -1,0 +1,37 @@
+1. Daxil edilmiş blog postla oxşar olan son üç blog postunu qaytaran qs yazın
+
+>>> blog = Blog.objects.get(id=1)
+>>> Blog.objects.filter(Q(category = blog.category) | Q(user = blog.user )).order_by('-created_at')[0:3]
+
+2. Daxil edilmiş məlumata uyğun blog postları axtarış edən qs yaradın:
+
+>>> from django.db.models import Q
+>>> from blog.models import Blog
+>>> Blog.objects.filter(Q(title__contains = searched) | Q(user__first_name__contains = searched))
+
+3. Ən populyar beş blog post taglərini qaytaran qs yazın:
+
+>>> from blog.models import Blog
+>>> Blog.tags.most_common()[0:5] 
+
+4. Ən populyar beş məhsul (product) taglərini qaytaran qs yazın:
+
+>>> from product.models import Product_version
+>>> Product_version.tags.most_common()[0:5] 
+
+5. Blog postların kateqoriyalarını qaytaran qs yazın:
+
+>>> from blog.models import BlogCategory
+>>> categories = BlogCategory.objects.all()
+>>> categories
+
+6. Daxil edilmiş məhsulla oxşar olan son səkkiz məhsulu qaytaran qs yazın
+
+>>> product1 = Product.objects.get(id=1)         
+>>> Product.objects.filter(Q(category = product1.category) | Q(brand = product1.brand)).order_by('-created_at')[0:8]
+
+
+7. Daxil edilmiş kateqoriyaya aid məhsulları qaytaran qs yazın:
+
+>>> from product.models import Product
+>>> Product.objects.filter(category__category_name=category).values() 

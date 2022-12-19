@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/my_static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}{% endblock %} | Pavshop</title>
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'rs-plugin/css/settings.css' %}" media="screen" />
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/ionicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <!-- JavaScripts -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+
+    <!-- Online Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="loader">
+        <div class="position-center-center">
+            <div class="ldr"></div>
+        </div>
+    </div>
+    <div id="wrap">
+        <header>
+            <div class="sticky">
+                <div class="container">
+                    
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="{% url 'homepage'  %}"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt=""></a>
+                    </div>
+                    <nav class="navbar ownmenu">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"><i class="fa fa-navicon"></i></span> </button>
+                        </div>
+
+                        <!-- NAV -->
+                        <div class="collapse navbar-collapse" id="nav-open-btn">
+                            <ul class="nav">
+                                <li class="dropdown active"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">{% trans 'Home' %}</a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="{% url 'homepage' %}">Index Default</a> </li>
+                                        <li> <a href="index-1.html">Index 2</a> </li>
+                                        <li> <a href="index-2.html">Index 3</a></li>
+                                        <li> <a href="index-header-1.html">Index Header 1</a></li>
+                                        <li> <a href="index-header-2.html">Index Header 2</a></li>
+                                        <li> <a href="index-header-3.html">Index Header 3</a></li>
+                                        <li> <a href="index-header-4.html">Index Header 4</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">{% trans 'Pages' %}</a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="{% url 'product_list' %}">Shop 01 </a> </li>
+                                        <li> <a href="shop_02.html">Shop 02</a> </li>
+                                        <li> <a href="shop_03.html">Shop 03 </a> </li>
+                                        <li> <a href="shop_04.html">Shop 04 </a> </li>
+                                        <li> <a href="{% url 'cart' %}">Shopping Cart</a> </li>
+                                        <li> <a href="{% url 'check_out' %}">Checkout</a> </li>
+                                        <li> <a href="about-us_01.html">About 01</a> </li>
+                                        <li> <a href="about-us_02.html">About 02</a> </li>
+                                        <li> <a href="{% url 'contact' %}">Contact</a> </li>
+                                        <li> <a href="blog-list_01.html">Blog List 01</a> </li>
+                                        <li> <a href="blog-list_02.html">Blog List 02</a> </li>
+                                        <li> <a href="blog-list_03.html">Blog List 03 </a> </li>
+                                        <li> <a href="blog-detail_01.html">Blog Detail 01 </a> </li>
+                                    </ul>
+                                </li>
+                                <li> <a href="{% url 'about-us'%}">About </a> </li>
+
+                                <!-- Two Link Option -->
+                                <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">{% trans 'Designer' %}</a>
+                                    <div class="dropdown-menu two-option">
+                                        <div class="row">
+                                            <ul class="col-sm-6">
+                                                <li> <a href="shop_01.html">summer store</a></li>
+                                                <li> <a href="shop_01.html"> sarees</a></li>
+                                                <li> <a href="shop_01.html"> kurtas</a></li>
+                                                <li> <a href="shop_01.html"> shorts & tshirts</a></li>
+                                                <li> <a href="shop_01.html"> winter wear</a></li>
+                                                <li> <a href="shop_01.html"> jeans</a></li>
+                                                <li> <a href="shop_01.html"> bra</a></li>
+                                                <li> <a href="shop_01.html"> babydools</a> </li>
+                                            </ul>
+                                            <ul class="col-sm-6">
+                                                <li> <a href="shop_01.html">deodornts</a></li>
+                                                <li> <a href="shop_01.html"> skin care</a></li>
+                                                <li> <a href="shop_01.html"> make up</a></li>
+                                                <li> <a href="shop_01.html"> watch</a></li>
+                                                <li> <a href="shop_01.html"> siting bags</a></li>
+                                                <li> <a href="shop_01.html"> totes</a></li>
+                                                <li> <a href="shop_01.html"> gold rings</a></li>
+                                                <li> <a href="shop_01.html"> jewellery</a> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- MEGA MENU -->
+                                <li class="dropdown megamenu"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">{% trans 'store' %}</a>
+                                    <div class="dropdown-menu">
+                                        <div class="row">
+
+                                            <!-- Shop Pages -->
+                                            <div class="col-md-3">
+                                                <h6>Shop Pages</h6>
+                                                <ul>
+                                                    <li> <a href="{% url 'product_list' %}">Shop 01 </a> </li>
+                                                    <li> <a href="shop_02.html">Shop 02</a> </li>
+                                                    <li> <a href="shop_03.html">Shop 03 </a> </li>
+                                                    <li> <a href="shop_04.html">Shop 04 </a> </li>
+                                                    <li> <a href="product-detail_01.html">Product Detail 01</a> </li>
+                                                    <li> <a href="product-detail_02.html">Product Detail 02</a> </li>
+                                                    <li> <a href="{% url 'cart' %}">Shopping Cart</a> </li>
+                                                    <li> <a href="{% url 'check_out' %}">Checkout</a> </li>
+                                                </ul>
+                                            </div>
+
+                                            <!-- TOp Rate Products -->
+                                            <div class="col-md-4">
+                                                <h6>TOp Rate Products</h6>
+                                                <div class="top-rated">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="media-left">
+                                                                <div class="cart-img">
+                                                                    <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-1.jpg' %}" alt="..."> </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="media-heading">WOOD CHAIR</h6>
+                                                                <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                                <span class="price">129.00 USD</span> </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="media-left">
+                                                                <div class="cart-img">
+                                                                    <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-2.jpg' %}" alt="..."> </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="media-heading">STOOL</h6>
+                                                                <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                                <span class="price">129.00 USD</span> </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="media-left">
+                                                                <div class="cart-img">
+                                                                    <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-3.jpg' %}" alt="..."> </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="media-heading">WOOD SPOON</h6>
+                                                                <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                                <span class="price">129.00 USD</span> </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <!-- New Arrival -->
+                                            <div class="col-md-5">
+                                                <h5>NEW ARRIVAL 2016 <span>(Best Collection)</span></h5>
+                                                <img class="nav-img" src="{% static 'images/nav-img.png' %}" alt="">
+                                                <p>Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit. <br> Donec faucibus maximus<br> vehicula.
+                                                </p>
+                                                <a href="#." class="btn btn-small btn-round">SHOP NOW</a> </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li> <a href="{% url 'contact' %}"> {% trans 'contact' %}</a> </li>
+                            </ul>
+                        </div>
+
+                        <!-- Nav Right -->
+                        <div class="nav-right">
+                            <ul class="navbar-right">
+
+                                <!-- USER INFO -->
+                                <li class="dropdown user-acc"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-user"></i> </a>
+                                    <ul class="dropdown-menu">
+                                        {% if request.user.is_authenticated %}
+                                        <li>
+                                            <h6> {% trans 'HELLO' %}, {{ request.user.username }} !</h6>
+                                        </li>
+                                        <li><a href="#">MY CART</a></li>
+                                        <li><a href="#">{% trans 'ACCOUNT INFO' %}</a></li>
+                                        <li><a href="{% url 'change_password' %}">{% trans 'Change Password' %}</a></li>
+                                        <li><a href="{% url 'logout' %}">{% trans 'LOG OUT' %}</a></li>
+                                        
+                                        {% else %}
+                                        <li>
+                                            <h6>{% trans 'Please, login!' %} </h6>
+                                        </li>
+                                        <li><a href="{% url 'login' %}">{% trans 'Login' %}</a></li>
+                                            <li>
+                                                <h6>{% trans 'Please, register!' %} </h6>
+                                            </li>
+
+                                            <li><a href="{% url 'register' %}">{% trans 'Register' %}</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+
+                                <!-- USER BASKET -->
+                                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i> </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="media-left">
+                                                <div class="cart-img">
+                                                    <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-1.jpg' %}" alt="..."> </a>
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">WOOD CHAIR</h6>
+                                                <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                                        </li>
+                                        <li>
+                                            <div class="media-left">
+                                                <div class="cart-img">
+                                                    <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-2.jpg' %}" alt="..."> </a>
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">WOOD STOOL</h6>
+                                                <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                                        </li>
+                                        <li>
+                                            <h5 class="text-center">SUBTOTAL: 258.00 USD</h5>
+                                        </li>
+                                        <li class="margin-0">
+                                            <div class="row">
+                                                <div class="col-xs-6"> <a href="{% url 'cart' %}" class="btn">VIEW CART</a></div>
+                                                <div class="col-xs-6 "> <a href="{% url 'check_out' %}" class="btn">CHECK OUT</a></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!-- SEARCH BAR -->
+                                <li class="dropdown"> <a href="javascript:void(0);" class="search-open"><i class=" icon-magnifier"></i></a>
+                                    <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
+                                        <div class="search-overlay"></div>
+                                        <div class="position-center-center">
+                                            <div class="search">
+                                                <form action="{% url 'search' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="search" name="searched"  placeholder="Search Shop">
+                                                    <button type="submit"><i class="icon-check"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="row g-2">
+                                            <div class="col ">
+                                            <div class="form-floating">
+                                                <input name="next" type="hidden" value="{{ request.get_full_path|slice:"3:" }}">
+                                                <select class="form-select langSelect" name="language" onchange="this.form.submit()" id="language">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% get_available_languages as LANGUAGES %}
+                                                {% get_language_info_list for LANGUAGES as languages %}
+                                                {% for language in languages %}
+                                                    <option class="langOpt" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                    {{ language.name_local }} ({{ language.code }})
+                                                    </option>
+                                                {% endfor %}
+                                                </select>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                                  
+                                
+                                
+                                
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header> 
+        
+        {% block content %} {% endblock %}
+        <!-- News Letter -->
+                    <section class="news-letter padding-top-150 padding-bottom-150">
+                        <div class="container">
+                            <div class="heading light-head text-center margin-bottom-30">
+                                <h4>{% trans 'NEWSLETTER' %}</h4>
+                                <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odi </span> </div>
+                            <form id="subscription-form">
+                                <input type="email" id="subscription-email" placeholder='{% trans "Enter your email address" %}' required>
+                                <button type="submit">{% trans 'SEND ME' %}</button>
+                            </form>
+                        </div>
+                    </section>
+                    
+        <footer>
+           
+            <div class="container">
+
+                <!-- ABOUT Location -->
+                <div class="col-md-3">
+                    <div class="about-footer"> <img class="margin-bottom-30" src="{% static 'images/logo-foot.png' %}" alt="">
+                        <p><i class="icon-pointer"></i> {% trans 'Street No. 12, Newyork 12,' %}<br> MD - 123, USA.</p>
+                        <p><i class="icon-call-end"></i> 1.800.123.456789</p>
+                        <p><i class="icon-envelope"></i> info@PAVSHOP.com</p>
+                    </div>
+                </div>
+
+                <!-- HELPFUL LINKS -->
+                <div class="col-md-3">
+                    <h6>{% trans 'HELPFUL LINKS' %}</h6>
+                    <ul class="link">
+                        <li><a href="{% url 'product_list' %}"> {% trans 'Products' %}</a></li>
+                        <li><a href="#."> {% trans 'Find a Store' %}</a></li>
+                        <li><a href="#."> {% trans 'Features' %}</a></li>
+                        <li><a href="#."> {% trans 'Privacy Policy' %}</a></li>
+                        <li><a href="{% url 'blog_list' %}"> {% trans 'Blog' %}</a></li>
+                        <li><a href="#."> {% trans 'Press Kit' %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- SHOP -->
+                <div class="col-md-3">
+                    <h6>{% trans 'SHOP' %}</h6>
+                    <ul class="link">
+                        <li><a href="{% url 'about-us'%}"> {% trans 'About Us' %}</a></li>
+                        <li><a href="#."> {% trans 'Career' %}</a></li>
+                        <li><a href="#."> {% trans 'Shipping Methods' %}</a></li>
+                        <li><a href="{% url 'contact' %}"> {% trans 'Contact' %}</a></li>
+                        <li><a href="#."> {% trans 'Support' %}</a></li>
+                        <li><a href="#."> {% trans 'Retailer' %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- MY ACCOUNT -->
+                <div class="col-md-3">
+                    <h6>{% trans 'MY ACCOUNT' %}</h6>
+                    <ul class="link">
+                        <li><a href="{% url 'login' %}">{% trans ' Login' %}</a></li>
+                        <li><a href="#."> {% trans 'My Account' %}</a></li>
+                        <li><a href="#."> {% trans 'My Cart' %}</a></li>
+                        <li><a href="{% url 'wishlist' %}"> {% trans 'Wishlist' %}</a></li>
+                        <li><a href="{% url 'check_out' %}">{% trans ' Checkout' %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Rights -->
+
+                <div class="rights">
+                    <p>{% trans '© 2017 PAVSHOP All right reserved.' %} </p>
+                    <div class="scroll"> <a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a> </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="{% static 'js/subscriber_email.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/own-menu.js' %}"></script>
+    <script src="{% static 'js/jquery.lighter.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.tp.t.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'rs-plugin/js/jquery.tp.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/addToCart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>{% block js %}{% endblock %}
+</body>
+
+</html>
+
+

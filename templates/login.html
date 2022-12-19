@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %} 
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<!--======= SUB BANNER =========-->
+<section class="sub-bnr" data-stellar-background-ratio="0.5">
+    <div class="position-center-center">
+        <div class="container">
+            <h4>{% trans 'LOGIN' %}</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage'  %}">Home</a></li>
+                <li><a href="#">PAGES</a></li>
+                <li class="active">{% trans 'LOGIN' %}</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<div id="content">
+
+    <!--======= PAGES INNER =========-->
+    <section class="chart-page padding-top-100 padding-bottom-100">
+        <div class="container">
+
+            <!-- Payments Steps -->
+            <div class="shopping-cart">
+
+                <!-- SHOPPING INFORMATION -->
+                <div class="cart-ship-info">
+                    <div class="row">
+
+                        <!-- ESTIMATE SHIPPING & TAX -->
+                        <div class="col-sm-7">
+                            <h6>{% trans 'LOGIN YOUR ACCOUNT' %}</h6>
+                            
+                            {% if messages %}
+                                <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %}  role="alert" class="alert alert-{{ message.tags }}" style="text-align: center;" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            <form method="POST" action="{% url 'login' %}"> {% csrf_token %}
+                                <ul class="row">
+                                    
+                                    {% for field in form %}
+                                            <li class="col-md-12">
+                                                <label> {{field.label |upper}}{{field}}
+                                                </label>
+                                    {% endfor %}
+                                    <!-- {% for field in loginform %}
+                                        {% for error in field.errors %}
+                                                <p style="color: green;">{{ error }}</p>
+                                        {% endfor %}
+                                    {% endfor %} -->
+                                    
+                                    {% if form.non_field_errors %}
+                                        <div style="color: red;">
+                                            <p>{{form.non_field_errors}}</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <!-- LOGIN -->
+                                    <li class="col-md-3">
+                                        <button type="submit" class="btn">{% trans 'LOGIN' %}</button>
+                                    </li>
+
+                                    <!-- CREATE AN ACCOUNT -->
+                                    <li class="col-md-3">
+                                        <div class="checkbox margin-0 margin-top-20">
+                                            <input id="checkbox1" class="styled" type="checkbox">
+                                            <label for="checkbox1"> Stay me Login</label>
+                                        </div>
+                                    </li>
+
+                                    <!-- FORGET PASS -->
+                                    <li class="col-md-3">
+                                        <div class="checkbox margin-0 margin-top-20 text-right">
+                                            <a href="{% url 'password_reset' %}">{% trans 'Forget Password' %}</a>
+                                        </div>
+                                    </li>
+                                   
+                                </ul>
+                            </form>
+
+                        </div>
+
+                        <!-- SUB TOTAL -->
+                        <div class="col-sm-5">
+                            <h6>LOGIN WITH</h6>
+                            <ul class="login-with">
+                                <li>
+                                    <a href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook"></i>FACEBOOK</a>
+
+                                </li>
+                                <li>
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google"></i>GOOGLE</a>
+
+                                </li>
+                                <li>
+                                    <a href="#."><i class="fa fa-twitter"></i>TWITTER</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="small-about padding-top-150 padding-bottom-150">
+        <div class="container">
+
+            <!-- Main Heading -->
+            <div class="heading text-center">
+                <h4>{% trans 'about PAVSHOP' %}</h4>
+                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex. </p>
+            </div>
+
+            <!-- Social Icons -->
+            <ul class="social_icons">
+                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
+                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
+                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
+                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
+                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+   
+</div> {% endblock %}

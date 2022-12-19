@@ -1,0 +1,59 @@
+version: "3.1"
+   
+services:
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - "web"
+    volumes:
+      - ./media/:/code/media/
+      - ./static/:/code/static/
+
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresdb:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=pavshop
+      - POSTGRES_USER=Gunay
+      - POSTGRES_PASSWORD=Adnsuuni12345678
+  redisdb:
+    container_name: redisdb
+    image: redis
+    ports:
+      - 6379:6379
+
+  web:
+    container_name: web
+    build: .
+    volumes:
+      - ./media:/code/media
+    ports:
+      - 8000:8000
+    command: gunicorn pavshop.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - "postgres"
+    env_file: .env
+  
+  celery:
+    container_name: celery
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+      - ./media:/code/media
+    command: celery -A pavshop worker --beat --scheduler django --loglevel=info
+    depends_on: 
+      - "postgres"
+      - "redisdb"
+    env_file: .env

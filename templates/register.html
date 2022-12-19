@@ -1,0 +1,82 @@
+{% extends 'base.html' %}{% load static %} 
+{% block title %} Register {% endblock %}
+{% block content %}
+<!--======= SUB BANNER =========-->
+<section class="sub-bnr" data-stellar-background-ratio="0.5">
+    <div class="position-center-center">
+        <div class="container">
+            <h4>REGISTER</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage'  %}">Home</a></li>
+                <li><a href="#">Pages</a></li>
+                <li class="active">REGISTER</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<div id="content">
+
+    <!--======= PAGES INNER =========-->
+    <section class="chart-page padding-top-100 padding-bottom-100">
+        <div class="container">
+
+            <!-- Payments Steps -->
+            <div class="shopping-cart">
+
+                <!-- SHOPPING INFORMATION -->
+                <div class="cart-ship-info register">
+                    <div class="row">
+
+                        <!-- ESTIMATE SHIPPING & TAX -->
+                        <div class="col-sm-12">
+                            <h6>REGISTER</h6>
+                            <form action="{% url 'register' %}" method="POST" >
+                                {% csrf_token %}
+                                <!-- {{ form.non_field_errors }} -->
+                                <ul class="row">
+                                    {% for field in form %}
+                                        <li class="col-md-6"><label for=""> {% if field.field.required %} *{{field.label}} {% else %}{{field.label}} {% endif %}{{field}}</label>
+                                            {% for error in field.errors %}
+                                            <p style="color: red;">{{error}}</p>
+                                            {% endfor %}</li>
+                                    {% endfor %}
+                                
+                                    <li class="col-md-6">
+                                        <button type="submit" class="btn">REGISTER NOW</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="small-about padding-top-150 padding-bottom-150">
+        <div class="container">
+
+            <!-- Main Heading -->
+            <div class="heading text-center">
+                <h4>about PAVSHOP</h4>
+                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex. </p>
+            </div>
+
+            <!-- Social Icons -->
+            <ul class="social_icons">
+                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
+                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
+                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
+                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
+                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+   
+</div>
+{% endblock %}

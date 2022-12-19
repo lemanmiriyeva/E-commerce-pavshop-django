@@ -1,0 +1,255 @@
+{% extends 'base.html' %}{% load static %} 
+{% block title %} Wishlist {% endblock %}
+{% block content %}
+{% load custom_filters %}
+
+<!--======= SUB BANNER =========-->
+<section class="sub-bnr" data-stellar-background-ratio="0.5">
+    <div class="position-center-center">
+        <div class="container">
+            <h4>PAVSHOP PRODUCTS</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</p>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'homepage'  %}">Home</a></li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<div id="content">
+
+    <!-- Products -->
+    <section class="shop-page padding-top-100 padding-bottom-100">
+        <div class="container">
+            <div class="row">
+
+                <!-- Item Content -->
+                <div class="col-sm-9">
+                    <div class="item-display">
+                        <div class="row">
+                            <!-- Products Select -->
+                            <div class="col-xs-6">
+                                <div class="pull-left">
+
+                                    <!-- Sort By -->
+                                    <select class="selectpicker">
+                      <option>Sort By</option>
+                      <option>Sort By</option>
+                      <option>Sort By</option>
+                    </select>
+                                    <!-- Filter By -->
+                                    <select class="selectpicker">
+                      <option>Filter By</option>
+                      <option>Filter By</option>
+                      <option>Filter By</option>
+                    </select>
+
+                                    <!-- GRID & LIST -->
+                                    <a href="#." class="grid-style"><i class="icon-grid"></i></a> <a href="#." class="list-style"><i class="icon-list"></i></a> </div>
+                            </div>
+                            <div class="col-xs-6 text-right"> <span class="product-num">Showing 1 - 10 of 30 products</span> </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Item Slide -->
+                    <div class="papular-block row single-img-demos">
+                        {% for product in liked_product_list %}
+                        <!-- Item -->
+                        <div class="col-md-4">
+                            <div class="item">
+                                <!-- Sale Tags -->
+                                {% if product.discount %}
+                                <div class="on-sale"> {{product.discount.disc_amount}}{% if product.discount.disc_is_percent %}%{% else %}man{% endif %} <br><span>OFF</span> </div>
+                                {% endif %}
+                                <!-- Item img -->
+                                <!-- {% for img in image %}
+                                    <img class="img-1" src="{{img.img.url}}" alt="">
+                                {% endfor %} -->
+                                
+                                <div class="item-img">
+                                    {% for img in images %}
+                                        {% if img.product.id == product.id %}
+                                            <img class="img-1" src="{{img.img.url}}" alt="">
+                                            <!-- Overlay -->
+                                                <div class="overlay">
+                                                    <div class="position-center-center">
+                                                        <div class="inn"><a href="{{img.img.url}}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="{% url 'unliked_product' product.id %}"><i style="color: red;" class="icon-heart"></i></a></div>
+                                                    </div>
+                                                </div>
+                                        {% endif %}
+                                    {% endfor  %} 
+                                </div>
+                                    
+                                <!-- Item Name -->
+                                <div class="item-name"> <a href="{% url 'product_detail' product.slug %}">{{product.title|upper}}</a>
+                                    <p>{{product.product.small_desc}}</p>
+                                </div>
+                                <!-- Price -->
+                                <span class="price"><small>$</small>{{product.price}}</span> </div>
+                        </div>
+                        {% empty %}
+                        <p style="color: red; font-size: 12px;">Sorry, we haven't any product!</p>
+                        {% endfor %}
+                       
+                    </div>
+
+                    <!-- Pagination -->
+                    {% if is_paginated %}
+                        <ul class="pagination in-center">
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                            {% else %}
+                                <li><a class="disabled" ><i class="fa fa-angle-left"></i></a></li>
+                            {% endif %}
+                            {% for page in paginator.page_range %}
+                                {% if page_obj.number == page %}
+                                    <li class="active"><a href="">{{ page }}</a></li>
+                                {% else %}
+                                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                            {% else %}
+                                <li><a class="disabled" ><i class="fa fa-angle-right"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                    
+                </div>
+
+                <!-- Shop SideBar -->
+                <div class="col-sm-3">
+                    <div class="shop-sidebar">
+
+                        <!-- Category -->
+                        <h5 class="shop-tittle margin-bottom-30">category</h5>
+                        <ul class="shop-cate">
+                            {% for category in categories %}
+                                <li><a href="{% url 'product_list' %}?category={{category.category_name}}"> {{category }} <span>{{ category|count }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <!-- FILTER BY PRICE -->
+                        <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY PRICE</h5>
+
+                        <!-- TAGS -->
+                        <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>
+                        <ul class="colors">
+                            <li>
+                                <a href="#." style="background:#958170;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#c9a688;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#c9c288;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#a7c988;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#9ed66b;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#6bd6b1;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#82c2dc;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#8295dc;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#9b82dc;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#dc82d9;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#dc82a2;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#e04756;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#f56868;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#eda339;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#edd639;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#daed39;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#a3ed39;"></a>
+                            </li>
+                            <li>
+                                <a href="#." style="background:#f56868;"></a>
+                            </li>
+                        </ul>
+
+                        <!-- TAGS -->
+                        <h5 class="shop-tittle margin-top-60 margin-bottom-30">POPULAR TAGS</h5>
+                        <ul class="shop-tags">
+                            <li><a href="#.">Towels</a></li>
+                            <li><a href="#.">Chair</a></li>
+                            <li><a href="#.">Bedsheets</a></li>
+                            <li><a href="#.">Shoe</a></li>
+                            <li><a href="#.">Curtains</a></li>
+                            <li><a href="#.">Clocks</a></li>
+                            <li><a href="#.">TV Cabinets</a></li>
+                            <li><a href="#.">Best Seller</a></li>
+                            <li><a href="#.">Top Selling</a></li>
+                        </ul>
+
+                        <!-- BRAND -->
+                        <h5 class="shop-tittle margin-top-60 margin-bottom-30">brands</h5>
+                        <ul class="shop-cate">
+                            {% for brand in brands %}
+                            <li><a href="#."> {{brand.brand}}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <!-- SIDE BACR BANER -->
+                        <div class="side-bnr margin-top-50"> <img class="img-responsive" src="{% static 'images/sidebar-bnr.jpg' %}" alt="">
+                            <div class="position-center-center"> <span class="price"><small>$</small>299</span>
+                                <div class="bnr-text">look hot with style
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="small-about padding-top-150 padding-bottom-150">
+        <div class="container">
+
+            <!-- Main Heading -->
+            <div class="heading text-center">
+                <h4>about PAVSHOP</h4>
+                <p>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante ipsumien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex. </p>
+            </div>
+
+            <!-- Social Icons -->
+            <ul class="social_icons">
+                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
+                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
+                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
+                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
+                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+  
+</div>{% endblock %}
+

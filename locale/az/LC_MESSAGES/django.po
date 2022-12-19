@@ -1,0 +1,225 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-12 00:11+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\accounts\forms.py:51
+msgid "Invalid login!"
+msgstr "Uğursuz cəhd!"
+
+#: .\accounts\views.py:55
+msgid ""
+"Included information is false! Please enter write username and password!"
+msgstr ""
+"Daxil olunan informasiya yalnışdır! Zəhmət olmasa, doğru istifadəçi adı və "
+"şifrəsi daxil edin! "
+
+#: .\pavshop\settings.py:154
+msgid "English"
+msgstr "Ingilis dili"
+
+#: .\pavshop\settings.py:155
+msgid "Azerbaijani"
+msgstr "Azəbaycan dili"
+
+#: .\templates\base.html:54
+msgid "Home"
+msgstr "Ana səhifə"
+
+#: .\templates\base.html:65
+msgid "Pages"
+msgstr "Səhifələr"
+
+#: .\templates\base.html:85
+msgid "Designer"
+msgstr "Dizayner"
+
+#: .\templates\base.html:113
+msgid "store"
+msgstr "Mağaza"
+
+#: .\templates\base.html:184
+msgid "contact"
+msgstr "Bizimlə əlaqə"
+
+#: .\templates\base.html:197
+msgid "HELLO"
+msgstr "SALAM"
+
+#: .\templates\base.html:200
+msgid "ACCOUNT INFO"
+msgstr "Hesab məlumatlarım"
+
+#: .\templates\base.html:201
+msgid "LOG OUT"
+msgstr "ÇIX"
+
+#: .\templates\base.html:204
+msgid "Please, register!"
+msgstr "Zəhmət olmasa, qeydiyyatdan keçin!"
+
+#: .\templates\base.html:206
+msgid "Register"
+msgstr "Qeydiyyat"
+
+#: .\templates\base.html:298
+msgid "NEWSLETTER"
+msgstr "Xəbərlər"
+
+#: .\templates\base.html:302
+msgid "SEND ME"
+msgstr "Göndər"
+
+#: .\templates\base.html:314
+msgid "Street No. 12, Newyork 12,"
+msgstr "Küçə No. 12, Newyork 12,"
+
+#: .\templates\base.html:322
+msgid "HELPFUL LINKS"
+msgstr "Köməkçi linklər"
+
+#: .\templates\base.html:324
+msgid "Products"
+msgstr "Məhsullar"
+
+#: .\templates\base.html:325
+msgid "Find a Store"
+msgstr "Mağazada axtar"
+
+#: .\templates\base.html:326
+msgid "Features"
+msgstr "Xüsusiyyətlər"
+
+#: .\templates\base.html:327
+msgid "Privacy Policy"
+msgstr "Gizlilik Siyasəti"
+
+#: .\templates\base.html:328
+msgid "Blog"
+msgstr "Bloq"
+
+#: .\templates\base.html:329
+msgid "Press Kit"
+msgstr ""
+
+#: .\templates\base.html:335
+msgid "SHOP"
+msgstr "Mağaza"
+
+#: .\templates\base.html:337
+msgid "About Us"
+msgstr "Haqqımızda"
+
+#: .\templates\base.html:338
+msgid "Career"
+msgstr "Kariyera"
+
+#: .\templates\base.html:339
+msgid "Shipping Methods"
+msgstr "Göndərmə üsulları"
+
+#: .\templates\base.html:340
+#, fuzzy
+#| msgid "contact"
+msgid "Contact"
+msgstr "Bizimlə əlaqə"
+
+#: .\templates\base.html:341
+msgid "Support"
+msgstr "Dəstək"
+
+#: .\templates\base.html:342
+msgid "Retailer"
+msgstr "Pərakəndə satıcı"
+
+#: .\templates\base.html:348
+#, fuzzy
+#| msgid "LOGIN YOUR ACCOUNT"
+msgid "MY ACCOUNT"
+msgstr "HESABINIZA DAXİL OLUN"
+
+#: .\templates\base.html:350
+msgid " Login"
+msgstr "Daxil olun"
+
+#: .\templates\base.html:351
+msgid "My Account"
+msgstr "Mənim hesabım"
+
+#: .\templates\base.html:352
+msgid "My Cart"
+msgstr "Mənim Kartım"
+
+#: .\templates\base.html:353
+msgid "Wishlist"
+msgstr "Bəyəndiklərim"
+
+#: .\templates\base.html:354
+msgid " Checkout"
+msgstr "Yoxla"
+
+#: .\templates\base.html:361
+msgid "© 2017 PAVSHOP All right reserved."
+msgstr "© 2017 PAVSHOP Bütün hüquqlar qorunur."
+
+#: .\templates\contact.html:7
+msgid "contact us now"
+msgstr "İndİ bizimlə əlaqə saxlayın"
+
+#: .\templates\contact.html:25
+msgid "PLEASE fill-up FEW details"
+msgstr "Lütfən, lazımi məlumatları dolduraraq mesajınızı bizə göndərin. "
+
+#: .\templates\contact.html:30
+msgid "Thank You. Your Message has been Submitted! "
+msgstr "Təşəkkürlər! Sizin mesajınız göndərildi!"
+
+#: .\templates\contact.html:80
+msgid "OUR ADDRESS"
+msgstr "Ünvanımız"
+
+#: .\templates\index.html:217
+msgid "popular products"
+msgstr "Məşhur məhsullar"
+
+#: .\templates\index.html:370 .\templates\login.html:130
+msgid "about PAVSHOP"
+msgstr "PAVSHOP haqqında"
+
+#: .\templates\index.html:371
+msgid ""
+"Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac ante "
+"ipsumien lacus, eu posuere odio luctus non. Nulla lacinia, eros vel "
+"fermentum consectetur, risus purus tempc, et iaculis odio dolor in ex."
+msgstr ""
+
+#: .\templates\login.html:8 .\templates\login.html:13 .\templates\login.html:66
+msgid "LOGIN"
+msgstr "DAXİL OL"
+
+#: .\templates\login.html:35
+msgid "LOGIN YOUR ACCOUNT"
+msgstr "HESABINIZA DAXİL OLUN"
+
+#: .\templates\login.html:80
+msgid "Forget Password"
+msgstr "Parolu unut"
+
+#: .\templates\login.html:86
+msgid "Change Password"
+msgstr "Parolu dəyiş"

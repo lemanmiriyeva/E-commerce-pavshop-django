@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>cart</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                            <li class="breadcrumb-item active">cart</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+    <!--section start-->
+    <section class="cart-section section-b-space">
+        <div class="container">
+            {% if user_basket %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table cart-table table-responsive-xs">
+                            <thead>
+                                <tr class="table-head">
+                                    <th scope="col">image</th>
+                                    <th scope="col">product name</th>
+                                    <th scope="col">price</th>
+                                    <th scope="col">quantity</th>
+                                    <th scope="col">action</th>
+                                    <th scope="col">total</th>
+                                </tr>
+                            </thead>
+                            {% for basket in user_basket %}
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'product_detail' basket.b_item_id.product_id.slug %}"><img src="{{ basket.b_item_id.product_id.image_1.url }}"></a>
+                                        </td>
+                                        <td><a href="{% url 'product_detail' basket.b_item_id.product_id.slug %}">{{ basket.b_item_id.product_id.product_name }}</a>
+                                            <div class="mobile-cart-content row">
+                                                <div class="col-xs-3">
+                                                    <div class="qty-box">
+                                                        <div class="input-group">
+                                                            <input min="1" max="{{ product.quantity }}" type="text" name="quantity" class="form-control input-number" value="1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color">${{ basket.b_item_id.product_id.new_price|floatformat:2 }}</h2>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color"><a href="#" class="icon"><i class="ti-close"></i></a>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h2>${{ basket.b_item_id.product_id.price|floatformat:2 }}</h2>
+                                        </td>
+                                        <td>
+                                            <div class="qty-box">
+                                                <div class="input-group">
+                                                    <input type="number" name="quantity" min="1" max="{{ basket.b_item_id.product_id.in_stock }}" class="form-control input-number" value="{{ basket.b_item_id.quantity }}">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><a  onclick = "removeBasket($(this).attr('data'))" data="{{ basket.b_item_id.product_id.id }}" href="{% url 'cart' %}" class="icon"><i class="ti-close"></i></a></td>
+                                        <td>
+                                            <h2 class="td-color">${{ basket.b_item_id.get_total|floatformat:2}}</h2>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                        <table class="table cart-table table-responsive-md">
+                            <tfoot>
+                                <tr>
+                                    <td>total price :</td>
+                                    <td>
+                                        <h2>${{ total_price|floatformat:2 }}</h2>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="row cart-buttons">
+                    <div class="col-6"><a href="" class="btn btn-solid">continue shopping</a></div>
+                    <div class="col-6"><a href="{% url 'check_out' %}" class="btn btn-solid">check out</a></div>
+                </div>
+            {% else %}
+                <div class="col-sm-12 empty-cart-cls text-center ng-star-inserted">
+                    <img src="">
+                    <h3 class="mt-4">
+                        <strong>Your Cart is Empty</strong>
+                    </h3>
+                    <h4>Add Something To Make Me Happy :)</h4>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <!--section end-->
+{% endblock %}
